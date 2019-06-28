@@ -18,8 +18,7 @@ public class ListaVertices {
         Primero = Ultimo = null;
     }
 
-    
- public void leerArchivo(String ruta) throws FileNotFoundException, IOException {
+    public void leerArchivo(String ruta) throws FileNotFoundException, IOException, ExceptionListaVertices, ExceptionListaAristas {
         File file = new File(ruta);
         BufferedReader br = new BufferedReader(new FileReader(file));
         String str = "";
@@ -34,45 +33,50 @@ public class ListaVertices {
             destino = parts[1];
             distancia = Integer.parseInt(parts[2]);
             tiempo = Integer.parseInt(parts[3]);
-            insertarVertice(origen,destino,distancia,tiempo);
+            insertarVertice(origen, destino, distancia, tiempo);
         }
-        
+
     }
 
-    public void insertarVertice(String origen, String destino, int distancia, int tiempo) {
+    public void insertarVertice(String origen, String destino, int distancia, int tiempo) throws ExceptionListaVertices, ExceptionListaAristas {
         Vertice nuevo = new Vertice(origen);
         if (Primero == null) {
             Primero = nuevo;
             Ultimo = Primero;
+            agregarArista(origen, destino, distancia, tiempo);
         } else {
             boolean repetido = false;
             boolean existeVertice = false;
             Vertice verticeTemporal = Primero;
             while (verticeTemporal.getSig() != null) {
-                if (verticeTemporal == nuevo) {
+                if (verticeTemporal.getNombre().equalsIgnoreCase(origen)) {
                     repetido = true;
                     break;
                 }
                 verticeTemporal = verticeTemporal.getSig();
             }
             verticeTemporal = Primero;
-            Arista aristaTemporal = verticeTemporal.getListaAristas().getPrimero();
-            while (aristaTemporal.getSig() != null) {
-                if (aristaTemporal.getNombre().equalsIgnoreCase(verticeTemporal.getNombre())) {
+            //Arista aristaTemporal = verticeTemporal.getListaAristas().getPrimero();
+            while (verticeTemporal.getSig() != null) {
+                if (verticeTemporal.getNombre().equalsIgnoreCase(destino)) {
                     existeVertice = true;
                 } else {
                     verticeTemporal = verticeTemporal.getSig();
-                    aristaTemporal = verticeTemporal.getListaAristas().getPrimero();
                 }
             }
-            if (!existeVertice) {
-                //Agregar el vértice
+            if (!repetido) {
+                Ultimo.setSig(nuevo);
+                Ultimo = nuevo;
             }
+            if (!existeVertice) {
+                Vertice nuevo2 = new Vertice(destino);
+                Ultimo.setSig(nuevo2);
+                Ultimo = nuevo2;
+            }
+            agregarArista(origen, destino, distancia, tiempo);
         }
     }
-    
-    
-    
+
     public void insertarVertice(String nombre) {
 
         if (Primero == null) {
@@ -114,8 +118,8 @@ public class ListaVertices {
 
         if (!existeOrigen) {
             throw new ExceptionListaVertices("El origen ingresado no existe");
-        }else if (!existeDestino) {
-             throw new ExceptionListaVertices("El destino ingresado no existe");
+        } else if (!existeDestino) {
+            throw new ExceptionListaVertices("El destino ingresado no existe");
         }
 
         vertOrigen.getListaAristas().insertarAristas(destinoNombre, distancia, time);
@@ -184,29 +188,28 @@ public class ListaVertices {
         String result = "Lista de Vertices= \n";
 
         Vertice temp = Primero;
-        int i=0;
+        int i = 0;
         while (temp != null) {
             ++i;
-            result +=i+ " =" + temp.getNombre() + "\n";
+            result += i + " =" + temp.getNombre() + "\n";
             temp = temp.getSig();
         }
-        
-        result+="\nLista de aristas= \n";
+
+        result += "\nLista de aristas= \n";
         temp = Primero;
-        int j=0;
+        int j = 0;
         while (temp != null) {
             ++j;
-            result +=j+ " =" + temp.getNombre();
-            if(temp.getListaAristas()==null||temp.getListaAristas().toString().equals("")){
-                result+= ", No presenta aristas\n";
-            }else{
-                result+=", "+temp.getListaAristas().toString() + "\n";
+            result += j + " =" + temp.getNombre();
+            if (temp.getListaAristas() == null || temp.getListaAristas().toString().equals("")) {
+                result += ", No presenta aristas\n";
+            } else {
+                result += ", " + temp.getListaAristas().toString() + "\n";
             }
-                    
+
             temp = temp.getSig();
         }
-        
-        
+
         return result;
     }
 
