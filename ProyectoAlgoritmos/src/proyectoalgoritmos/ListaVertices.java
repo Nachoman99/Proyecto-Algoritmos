@@ -1,5 +1,11 @@
 package proyectoalgoritmos;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  *
  * @author cocau
@@ -12,6 +18,33 @@ public class ListaVertices {
         Primero = Ultimo = null;
     }
 
+    
+ public void leerArchivo(String ruta) throws FileNotFoundException, IOException {
+        File file = new File(ruta);
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String str = "";
+        String[] parts;
+        String origen = "";
+        String destino = "";
+        int distancia = 0;
+        int tiempo = 0;
+        while ((str = br.readLine()) != null) {
+            parts = str.split(",");
+            origen = parts[0];
+            destino = parts[1];
+            distancia = Integer.parseInt(parts[2]);
+            tiempo = Integer.parseInt(parts[3]);
+            insertarVertice(origen,destino,distancia,tiempo);
+        }
+        
+    }
+
+    public void insertarVertice(String origen,String destino,int distancia,int tiempo){
+        
+    }
+    
+    
+    
     public void insertarVertice(String nombre) {
 
         if (Primero == null) {

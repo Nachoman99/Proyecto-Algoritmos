@@ -1,5 +1,9 @@
 package proyectoalgoritmos;
 
+import java.io.File;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author cocau
@@ -44,6 +48,20 @@ public class Main {
         Interfaz gui = new Interfaz();
         boolean pasar = false;
 
+         String ruta = "";
+        JFileChooser file = new JFileChooser();
+        file.showOpenDialog(file);
+        File fichero = file.getSelectedFile();
+        try {
+            listaVertices.leerArchivo(fichero.getPath());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+        
+        
+        
+        
         while (pasar == false) {
 
             int opcion = gui.pedirValorInt("[1]INSERTAR Vertice\n[2]Remover Vertice\n[3]\n"
