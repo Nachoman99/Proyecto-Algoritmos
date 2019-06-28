@@ -8,6 +8,38 @@ public class Main {
 
     public static void main(String[] args) {
 
+        /*
+        ruta = "";
+                    JFileChooser file = new JFileChooser();
+                    file.showOpenDialog(file);
+                    File fichero = file.getSelectedFile();
+                    try {
+                        lista = leerArchivo(fichero.getPath());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+        
+        public static ArrayList leerArchivo(String ruta) throws FileNotFoundException, IOException {
+        ArrayList<Persona> list = new ArrayList<>();
+        File file = new File(ruta);
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String str = "";
+        String[] parts;
+        int cedula = 0;
+        String nombre = "";
+        int edad = 0;
+        while ((str = br.readLine()) != null) {
+            parts = str.split(",");
+            cedula = Integer.parseInt(parts[0]);
+            nombre = parts[1];
+            edad = Integer.parseInt(parts[2]);
+            Persona persona = new Persona(cedula, nombre, edad);
+            list.add(persona);
+        }
+        return list;
+    }
+        */
+        
         ListaVertices listaVertices = new ListaVertices();
         Interfaz gui = new Interfaz();
         boolean pasar = false;
