@@ -70,7 +70,7 @@ public class Main {
                         listaVertices.agregarArista(gui.pedirCadenas("Ingrese el origen"),
                                 gui.pedirCadenas("Ingrese el destino"), gui.pedirValorInt("Ingrese la distancia"),
                                 gui.pedirValorInt("Ingrese el timepo en minutos"));
-                    } catch (ExceptionListaVertices ex) {
+                    } catch (ExceptionListaVertices | ExceptionListaAristas ex) {
                         gui.mostrar(ex.getMessage());
                     }
 

@@ -13,13 +13,22 @@ public class ListaAristas {
         Primero = Ultimo = null;
     }
 
-    public void insertarAristas(String nombre, int dist, int time) {
+    public void insertarAristas(String nombre, int dist, int time) throws ExceptionListaAristas {
 
         if (Primero == null) {
 
             Primero = new Arista(nombre, dist, time);
             Ultimo = Primero;
         } else {
+
+            Arista temp = Primero;
+
+            while (temp != null) {
+
+                if (temp.getNombre().equalsIgnoreCase(nombre)) {
+                    throw new ExceptionListaAristas("No se puede crear la arista");
+                }
+            }
 
             Arista nuevo = new Arista(nombre, dist, time);
             Ultimo.setSig(nuevo);

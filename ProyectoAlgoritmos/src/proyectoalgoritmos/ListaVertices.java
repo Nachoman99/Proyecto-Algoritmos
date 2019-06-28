@@ -27,7 +27,7 @@ public class ListaVertices {
 
     }
 
-    public void agregarArista(String origenNombre, String destinoNombre, int distancia, int time) throws ExceptionListaVertices {
+    public void agregarArista(String origenNombre, String destinoNombre, int distancia, int time) throws ExceptionListaVertices, ExceptionListaAristas {
 
         Vertice temp = Primero;
         Vertice vertOrigen = null;
@@ -51,8 +51,10 @@ public class ListaVertices {
             temp = temp.getSig();
         }
 
-        if (!existeOrigen || !existeDestino) {
-            throw new ExceptionListaVertices("Los datos ingresados no coinciden con los vertices existentes");
+        if (!existeOrigen) {
+            throw new ExceptionListaVertices("El origen ingresado no existe");
+        }else if (!existeDestino) {
+             throw new ExceptionListaVertices("El destino ingresado no existe");
         }
 
         vertOrigen.getListaAristas().insertarAristas(destinoNombre, distancia, time);
