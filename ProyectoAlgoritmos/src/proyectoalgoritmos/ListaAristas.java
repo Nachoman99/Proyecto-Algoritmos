@@ -13,6 +13,22 @@ public class ListaAristas {
         Primero = Ultimo = null;
     }
 
+    public Arista getPrimero() {
+        return Primero;
+    }
+
+    public void setPrimero(Arista Primero) {
+        this.Primero = Primero;
+    }
+
+    public Arista getUltimo() {
+        return Ultimo;
+    }
+
+    public void setUltimo(Arista Ultimo) {
+        this.Ultimo = Ultimo;
+    }
+    
     public void insertarAristas(String nombre, int dist, int time) throws ExceptionListaAristas {
 
         if (Primero == null) {

@@ -39,8 +39,36 @@ public class ListaVertices {
         
     }
 
-    public void insertarVertice(String origen,String destino,int distancia,int tiempo){
-        
+    public void insertarVertice(String origen, String destino, int distancia, int tiempo) {
+        Vertice nuevo = new Vertice(origen);
+        if (Primero == null) {
+            Primero = nuevo;
+            Ultimo = Primero;
+        } else {
+            boolean repetido = false;
+            boolean existeVertice = false;
+            Vertice verticeTemporal = Primero;
+            while (verticeTemporal.getSig() != null) {
+                if (verticeTemporal == nuevo) {
+                    repetido = true;
+                    break;
+                }
+                verticeTemporal = verticeTemporal.getSig();
+            }
+            verticeTemporal = Primero;
+            Arista aristaTemporal = verticeTemporal.getListaAristas().getPrimero();
+            while (aristaTemporal.getSig() != null) {
+                if (aristaTemporal.getNombre().equalsIgnoreCase(verticeTemporal.getNombre())) {
+                    existeVertice = true;
+                } else {
+                    verticeTemporal = verticeTemporal.getSig();
+                    aristaTemporal = verticeTemporal.getListaAristas().getPrimero();
+                }
+            }
+            if (!existeVertice) {
+                //Agregar el vértice
+            }
+        }
     }
     
     

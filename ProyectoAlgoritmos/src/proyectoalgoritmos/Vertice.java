@@ -22,6 +22,10 @@ public class Vertice {
         listaAristas = new ListaAristas();
     }
 
+//    public String getNombre(){
+//        return nombre;
+//    }
+    
     public Vertice getSig() {
         return sig;
     }
