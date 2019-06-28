@@ -28,7 +28,7 @@ public class ListaAristas {
     public void setUltimo(Arista Ultimo) {
         this.Ultimo = Ultimo;
     }
-    
+
     public void insertarAristas(String nombre, int dist, int time) throws ExceptionListaAristas {
 
         if (Primero == null) {
@@ -43,8 +43,8 @@ public class ListaAristas {
 
                 if (temp.getNombre().equalsIgnoreCase(nombre)) {
                     throw new ExceptionListaAristas("No se puede crear la arista");
-                }else{
-                    temp=temp.getSig();
+                } else {
+                    temp = temp.getSig();
                 }
             }
 
@@ -55,22 +55,80 @@ public class ListaAristas {
 
     }
 
-    public void removeInicioLista() {
-        if (Primero != null) {
+    public Arista removeInicioLista() throws ExceptionListaAristas{
+       
+        Arista eliminado;
+        if(Primero == null){
+            throw new ExceptionListaAristas("No hay mas valores a eliminar");
+        }else{
+            if(Primero.getSig() == null){
+            eliminado = Primero;
+            Primero = null;
+            Ultimo = null;
+            return eliminado;
+            }else{
+                eliminado = Primero;
+                Primero = Primero.getSig();
+//                Primero.getDato();
+                return eliminado;
+            }
+        }
+        
+    }
 
-            if (Primero == Ultimo) {
-
+    public void eliminarFinal() throws ExceptionListaAristas {
+        int eliminado;
+        if (Primero == null) {
+            throw new ExceptionListaAristas("No hay mas valores a eliminar");
+        } else {
+            if (Primero.getSig() == null) {
+//                eliminado = Primero.getDato();
                 Primero = null;
                 Ultimo = null;
-            } else {
 
-                Primero = Primero.getSig();
+            } else {
+                Arista temp = Primero;
+                while (temp.getSig().getSig() != null) {
+                    temp = temp.getSig();
+                }
+
+                temp.setSig(null);
+                Ultimo = temp;
+
             }
         }
 
     }
 
-    public void removeArista(String nombreIngresado) {
+    public void eliminarEspecifico(String valor) throws ExceptionListaAristas {
+        if (Primero == null) {
+            throw new ExceptionListaAristas("La lista esta vacia no se puede realizar la accion");
+        } else {
+
+            if (valor.equalsIgnoreCase(Primero.getNombre())) {
+                removeInicioLista();
+                return;
+            } else if (valor.equalsIgnoreCase(Ultimo.getNombre())) {
+                eliminarFinal();
+                return;
+            }
+            Arista temp = Primero;
+            while (temp.getSig() != null) {
+                if (valor.equalsIgnoreCase(temp.getSig().getNombre())) {
+                    temp.setSig(temp.getSig().getSig());
+
+                } else {
+                    temp = temp.getSig();
+                }
+
+            }
+
+//            throw new ExceptionListaAristas("No se encontro el valor en la lista");
+        }
+
+    }
+
+    public void removeArista(String nombreIngresado) throws ExceptionListaAristas {
 
         if (Primero != null) {
 
@@ -120,7 +178,7 @@ public class ListaAristas {
 
         while (temp != null) {
 
-            result += " [" + temp.getNombre() + "," + temp.getDist() +","+temp.getTime()+ "] ";
+            result += " [" + temp.getNombre() + "," + temp.getDist() + "," + temp.getTime() + "] ";
             temp = temp.getSig();
         }
 

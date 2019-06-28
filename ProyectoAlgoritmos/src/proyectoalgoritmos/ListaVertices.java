@@ -137,7 +137,7 @@ public class ListaVertices {
 
     }
 
-    public void removeVertice(String nombreIngresado) {
+    public void removeVertice(String nombreIngresado) throws ExceptionListaAristas {
 
         if (Primero != null) {
 
@@ -145,7 +145,7 @@ public class ListaVertices {
 
             if (nombreIngresado.equalsIgnoreCase(Primero.getNombre())) {
 
-                temp.getListaAristas().removeArista(nombreIngresado);
+                temp.getListaAristas().eliminarEspecifico(nombreIngresado);
                 removeInicioLista();
             }
 
@@ -153,7 +153,7 @@ public class ListaVertices {
 
                 if (temp.getSig() != null) {
 
-                    temp.getSig().getListaAristas().removeArista(nombreIngresado);
+                    temp.getListaAristas().eliminarEspecifico(nombreIngresado);
 
                     if (temp.getSig().getNombre().equalsIgnoreCase(nombreIngresado)) {
 
