@@ -42,45 +42,42 @@ public class Main {
         }
         return list;
     }
-        */
-        
+         */
         ListaVertices listaVertices = new ListaVertices();
         Interfaz gui = new Interfaz();
         boolean pasar = false;
-
-         String ruta = "";
-        JFileChooser file = new JFileChooser();
-        file.showOpenDialog(file);
-        File fichero = file.getSelectedFile();
-        try {
-            listaVertices.leerArchivo(fichero.getPath());
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        
-        
-        
-        
-        
         while (pasar == false) {
 
-            int opcion = gui.pedirValorInt("[1]INSERTAR Vertice\n[2]Remover Vertice\n[3]\n"
-                    + "[4]Agregar Arista\n[5]\n[6]Imprimir grafo\n[7]\n"
-                    + "[8]\n[9]\n[10]Salir\\n[11]n12)"
-                    + "\n13)");
+            int opcion = gui.pedirValorInt("[1] Insertar mediante fichero"+"\n"+"[2] INSERTAR Vertice\n[3] Remover Vertice\n[4]\n"
+                    + "[5] Agregar Arista\n[6] Imprimir grafo\n[7]\n"
+                    + "[8]\n[9]\n[10] Salir\n[11]\n[12]"
+                    + "\n[13]");
 
             switch (opcion) {
-
                 case 1:
-                    listaVertices.insertarVertice(gui.pedirCadenas("Ingerese un valor"));
+                    String ruta = "";
+                    JFileChooser file = new JFileChooser();
+                    file.showOpenDialog(file);
+                    File fichero = file.getSelectedFile();
+                    try {
+                        listaVertices.leerArchivo(fichero.getPath());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    } catch(NullPointerException o){
+                        gui.mostrar("Ingrese un valor");            
+                    }
+
                     break;
                 case 2:
-                    listaVertices.removeVertice(gui.pedirCadenas("Ingrese el nombre del nodo que desea eliminar"));
+                    listaVertices.insertarVertice(gui.pedirCadenas("Ingerese un valor"));
                     break;
                 case 3:
+                    listaVertices.removeVertice(gui.pedirCadenas("Ingrese el nombre del nodo que desea eliminar"));
+                    break;
+                case 4:
                     break;
 
-                case 4:
+                case 5:
 
                     gui.mostrar(listaVertices.toString());
 

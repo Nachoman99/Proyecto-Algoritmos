@@ -77,7 +77,7 @@ public class ListaVertices {
 
             if (destinoNombre.equalsIgnoreCase(temp.getNombre())) {
 
-                vertOrigen = temp;
+//                vertOrigen = temp;
                 existeDestino = true;
             }
 
@@ -153,16 +153,32 @@ public class ListaVertices {
 
     public String toString() {
 
-        String result = "";
+        String result = "Lista de Vertices= \n";
 
         Vertice temp = Primero;
-
+        int i=0;
         while (temp != null) {
-
-            result += " [" + temp.getNombre() + "] => Aristas = " + temp.getListaAristas().toString() + "\n";
+            ++i;
+            result +=i+ " =" + temp.getNombre() + "\n";
             temp = temp.getSig();
         }
-
+        
+        result+="\nLista de aristas= \n";
+        temp = Primero;
+        int j=0;
+        while (temp != null) {
+            ++j;
+            result +=j+ " =" + temp.getNombre();
+            if(temp.getListaAristas()==null||temp.getListaAristas().toString().equals("")){
+                result+= ", No presenta aristas\n";
+            }else{
+                result+=", "+temp.getListaAristas().toString() + "\n";
+            }
+                    
+            temp = temp.getSig();
+        }
+        
+        
         return result;
     }
 

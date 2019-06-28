@@ -102,7 +102,7 @@ public class ListaAristas {
 
         while (temp != null) {
 
-            result += " [" + temp.getNombre() + "," + temp.getDist() + "] ";
+            result += " [" + temp.getNombre() + "," + temp.getDist() +","+temp.getTime()+ "] ";
             temp = temp.getSig();
         }
 
