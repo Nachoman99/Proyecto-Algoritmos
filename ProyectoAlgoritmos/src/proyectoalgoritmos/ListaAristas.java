@@ -43,6 +43,8 @@ public class ListaAristas {
 
                 if (temp.getNombre().equalsIgnoreCase(nombre)) {
                     throw new ExceptionListaAristas("No se puede crear la arista");
+                }else{
+                    temp=temp.getSig();
                 }
             }
 

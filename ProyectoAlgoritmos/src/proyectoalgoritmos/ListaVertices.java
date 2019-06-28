@@ -43,23 +43,31 @@ public class ListaVertices {
         if (Primero == null) {
             Primero = nuevo;
             Ultimo = Primero;
+            Vertice nuevo2 = new Vertice(destino);
+            Ultimo.setSig(nuevo2);
+            Ultimo = nuevo2;
             agregarArista(origen, destino, distancia, tiempo);
+            System.err.println("entro al 1");
         } else {
+            System.err.println("entro al 2");
             boolean repetido = false;
             boolean existeVertice = false;
             Vertice verticeTemporal = Primero;
-            while (verticeTemporal.getSig() != null) {
+            while (verticeTemporal != null) {
                 if (verticeTemporal.getNombre().equalsIgnoreCase(origen)) {
                     repetido = true;
-                    break;
+                    verticeTemporal=null;
+                }else{
+                     verticeTemporal = verticeTemporal.getSig();
                 }
-                verticeTemporal = verticeTemporal.getSig();
+               
             }
             verticeTemporal = Primero;
             //Arista aristaTemporal = verticeTemporal.getListaAristas().getPrimero();
-            while (verticeTemporal.getSig() != null) {
+            while (verticeTemporal!= null) {
                 if (verticeTemporal.getNombre().equalsIgnoreCase(destino)) {
                     existeVertice = true;
+                    verticeTemporal=null;
                 } else {
                     verticeTemporal = verticeTemporal.getSig();
                 }
@@ -74,6 +82,8 @@ public class ListaVertices {
                 Ultimo = nuevo2;
             }
             agregarArista(origen, destino, distancia, tiempo);
+            System.out.println("agrego");
+//            System.out.println(toString());
         }
     }
 
@@ -114,6 +124,7 @@ public class ListaVertices {
             }
 
             temp = temp.getSig();
+           
         }
 
         if (!existeOrigen) {

@@ -1,6 +1,7 @@
 package proyectoalgoritmos;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 
@@ -10,7 +11,7 @@ import javax.swing.JFileChooser;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, ExceptionListaVertices, ExceptionListaAristas {
 
         /*
         ruta = "";
@@ -63,9 +64,7 @@ public class Main {
                         listaVertices.leerArchivo(fichero.getPath());
                     } catch (IOException ex) {
                         ex.printStackTrace();
-                    } catch(NullPointerException o){
-                        gui.mostrar("Ingrese un valor");            
-                    }
+                    } 
 
                     break;
                 case 2:
