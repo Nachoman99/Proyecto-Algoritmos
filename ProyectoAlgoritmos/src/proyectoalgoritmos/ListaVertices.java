@@ -27,7 +27,7 @@ public class ListaVertices {
 
     }
 
-    public void agregarArista(String origenNombre, String destinoNombre, int distancia) throws ExceptionListaVertices {
+    public void agregarArista(String origenNombre, String destinoNombre, int distancia, int time) throws ExceptionListaVertices {
 
         Vertice temp = Primero;
         Vertice vertOrigen = null;
@@ -55,7 +55,7 @@ public class ListaVertices {
             throw new ExceptionListaVertices("Los datos ingresados no coinciden con los vertices existentes");
         }
 
-        vertOrigen.getListaAristas().insertarAristas(destinoNombre, distancia);
+        vertOrigen.getListaAristas().insertarAristas(destinoNombre, distancia, time);
 
     }
 

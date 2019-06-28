@@ -13,15 +13,15 @@ public class ListaAristas {
         Primero = Ultimo = null;
     }
 
-    public void insertarAristas(String nombre, int dist) {
+    public void insertarAristas(String nombre, int dist, int time) {
 
         if (Primero == null) {
 
-            Primero = new Arista(nombre, dist);
+            Primero = new Arista(nombre, dist, time);
             Ultimo = Primero;
         } else {
 
-            Arista nuevo = new Arista(nombre, dist);
+            Arista nuevo = new Arista(nombre, dist, time);
             Ultimo.setSig(nuevo);
             Ultimo = nuevo;
         }
